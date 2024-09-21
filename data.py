@@ -1,38 +1,19 @@
+from requests import get
+
+# Parameters we will need
+parameters = {
+    "amount": 10,
+    "type": "boolean"
+}
+
+# Request the quiz data from opentdb.com
+response = get(url="https://opentdb.com/api.php", params=parameters)
+
+# Raises an error if we get one
+response.raise_for_status()
+
+# Get the data
+data = response.json()
+
 # List that contains dictionaries with questions and their answer
-question_data = [
-        {
-            "type": "boolean",
-            "difficulty": "medium",
-            "category": "Science: Mathematics",
-            "question": "A &#039;Millinillion&#039; is a real number.",
-            "correct_answer": "True",
-            "incorrect_answers": ["False"]
-        },
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Music",
-         "question": "The song &quot;Stronger Than You&quot; is a single by Estelle, who played Garnet in Steven Universe.",
-         "correct_answer": "True", "incorrect_answers": ["False"]},
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Japanese Anime &amp; Manga",
-         "question": "In the 1988 film &quot;Akira&quot;, Tetsuo ends up destroying Tokyo.", "correct_answer": "True",
-         "incorrect_answers": ["False"]},
-        {"type": "boolean", "difficulty": "hard", "category": "Entertainment: Video Games",
-         "question": "In The Witcher 3, the Zoltan Chivay Gwent card can be found under the Hanged Man&#039;s Tree.",
-         "correct_answer": "True", "incorrect_answers": ["False"]},
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Film",
-         "question": "Brandon Routh plays the titular character in the movie &quot;John Wick&quot;.",
-         "correct_answer": "False", "incorrect_answers": ["True"]},
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Video Games",
-         "question": "The main character in the &quot;Half-Life&quot; franchise is named Morgan Freeman.",
-         "correct_answer": "False", "incorrect_answers": ["True"]},
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Television",
-         "question": "In &quot;Doctor Who&quot;, the Doctor gets his TARDIS by stealing it.", "correct_answer": "True",
-         "incorrect_answers": ["False"]},
-        {"type": "boolean", "difficulty": "medium", "category": "Entertainment: Video Games",
-         "question": "The first Maxis game to feature the fictional language &quot;Simlish&quot; was The Sims (2000).",
-         "correct_answer": "False", "incorrect_answers": ["True"]},
-        {"type": "boolean", "difficulty": "easy", "category": "Entertainment: Board Games",
-         "question": "&quot;PAYDAY: The Heist&quot; is a sequel to the board game &quot;Payday&quot;.",
-         "correct_answer": "False", "incorrect_answers": ["True"]},
-        {"type": "boolean", "difficulty": "hard", "category": "Entertainment: Japanese Anime &amp; Manga",
-         "question": "The protagonist in &quot;Humanity Has Declined&quot; has no discernable name and is simply referred to as &#039;I&#039; for most of the series.",
-         "correct_answer": "True", "incorrect_answers": ["False"]}
-]
+question_data = data["results"]
