@@ -5,6 +5,7 @@ class QuizBrain:
     This script stores the logic of the quiz
     """
     def __init__(self, q_list):
+        self.current_question = None
         self.question_number = 0
         self.question_list = q_list
         self.score = 0
@@ -31,10 +32,6 @@ class QuizBrain:
         question = unescape(self.current_question.text)
 
         return question
-        # User answers the question
-        # user_answer = input(f"Q.{self.question_number}: {question} (True/False)\n").capitalize()
-        # Check if the answer is correct
-        # self.check_answer(user_answer, current_question.answer)
 
     def check_answer(self, user_answer):
         """
@@ -44,10 +41,6 @@ class QuizBrain:
         # If it's correct, the user scores a point
         if user_answer == self.current_question.answer:
             self.score += 1
-            print("You got it right!")
+            return True
         else:
-            print("Whoops! You got it wrong!")
-        # Print correct answer and current score
-        print(f"The correct answer was {self.current_question.answer}")
-        print(f"Your score is {self.score}/{self.question_number}.")
-        print("\n")
+            return False
