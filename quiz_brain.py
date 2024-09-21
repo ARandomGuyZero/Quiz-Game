@@ -1,3 +1,5 @@
+from html import unescape
+
 class QuizBrain:
     """
     This script stores the logic of the quiz
@@ -23,10 +25,12 @@ class QuizBrain:
         """
         # Selects the next question using sef.question_number for index
         current_question = self.question_list[self.question_number]
-        # Once the question is selected, we increase the question number to fix wrong number shown. (eg. question 0 should show 1 to user)
+        # Once the question is selected, we increase the question number to fix wrong number shown. (example, question 0 should show 1 to user)
         self.question_number += 1
+        # Unescape HTML Entities in question
+        question = unescape(current_question.text)
         # User answers the question
-        user_answer = input(f"Q.{self.question_number}: {current_question.text} (True/False)").capitalize()
+        user_answer = input(f"Q.{self.question_number}: {question} (True/False)\n").capitalize()
         # Check if the answer is correct
         self.check_answer(user_answer, current_question.answer)
 
