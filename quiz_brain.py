@@ -24,11 +24,11 @@ class QuizBrain:
         Simple logic to print question for user to answer
         """
         # Selects the next question using sef.question_number for index
-        current_question = self.question_list[self.question_number]
+        self.current_question = self.question_list[self.question_number]
         # Once the question is selected, we increase the question number to fix wrong number shown. (example, question 0 should show 1 to user)
         self.question_number += 1
         # Unescape HTML Entities in question
-        question = unescape(current_question.text)
+        question = unescape(self.current_question.text)
 
         return question
         # User answers the question
@@ -36,19 +36,18 @@ class QuizBrain:
         # Check if the answer is correct
         # self.check_answer(user_answer, current_question.answer)
 
-    def check_answer(self, user_answer, correct_answer):
+    def check_answer(self, user_answer):
         """
         Checks if user's answer is correct
         :param user_answer: User's answer
-        :param correct_answer: The question's correct answer
         """
         # If it's correct, the user scores a point
-        if user_answer == correct_answer:
+        if user_answer == self.current_question.answer:
             self.score += 1
             print("You got it right!")
         else:
             print("Whoops! You got it wrong!")
         # Print correct answer and current score
-        print(f"The correct answer was {correct_answer}")
+        print(f"The correct answer was {self.current_question.answer}")
         print(f"Your score is {self.score}/{self.question_number}.")
         print("\n")
