@@ -27,13 +27,13 @@ for question in question_data:
     question_bank.append(new_question)
 
 # Creating a new object QuizBrain which will do the quiz logic
-quiz = QuizBrain(question_bank)
-quiz_interface = QuizInterface()
+quiz_brain = QuizBrain(question_bank)
+quiz_interface = QuizInterface(quiz_brain)
 
 # Simple loop that will continue as long as there as unanswered questions
-while quiz.still_has_questions():
-    quiz.next_question()
+while quiz_brain.still_has_questions():
+    quiz_brain.next_question()
 
 # Congratulate user for finishing quest and show them score
 print("You finished it!")
-print(f"Your final score is {quiz.score}/{quiz.question_number}!")
+print(f"Your final score is {quiz_brain.score}/{quiz_brain.question_number}!")

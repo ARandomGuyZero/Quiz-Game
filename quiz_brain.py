@@ -29,10 +29,12 @@ class QuizBrain:
         self.question_number += 1
         # Unescape HTML Entities in question
         question = unescape(current_question.text)
+
+        return question
         # User answers the question
-        user_answer = input(f"Q.{self.question_number}: {question} (True/False)\n").capitalize()
+        # user_answer = input(f"Q.{self.question_number}: {question} (True/False)\n").capitalize()
         # Check if the answer is correct
-        self.check_answer(user_answer, current_question.answer)
+        # self.check_answer(user_answer, current_question.answer)
 
     def check_answer(self, user_answer, correct_answer):
         """
